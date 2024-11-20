@@ -1,0 +1,61 @@
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import ReactMarkdown from 'react-markdown';
+import MarkdownEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+import Markdown from 'react-markdown';
+import Editor from 'react-markdown-editor-lite';
+import { v2 as cloudinary } from 'cloudinary'; // Import Cloudinary v2 API
+
+    const [markdown, setMarkdown] = useState('');
+
+
+    const handleImageUpload = async (file) => {
+        try {
+            const uploadedImageUrl = await uploadImageToCloud(file);
+            // Insert the uploaded image URL in the editor
+            const newMarkdown = `${markdown}\n![${uploadedImageUrl}](${file.name})`;
+            setMarkdown(newMarkdown);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
+
+    const uploadImageToCloud = async (file) => {
+        // Simulate uploading to a cloud storage (replace with actual upload logic)
+        // For demonstration, just return a placeholder URL
+        return Promise.resolve('iamges text');
+    };
+
+    const handleAddImageUrl = (url) => {
+        // Add image URL to the markdown content
+        const newMarkdown = `${markdown}\n![Image Alt Text](${url})`;
+        setMarkdown(newMarkdown);
+    };
+
+    const customComponents = {
+        img: ({ node, ...props }) => {
+            // Use the actual `src` from `props.src`
+            return <img {...props} />;
+        },
+    };
+
+
+
+
+
+     <div>
+                <Editor
+                    value={markdown}
+                    onChange={({ text }) => setMarkdown(text)}
+                    renderHTML={(text) => <ReactMarkdown components={customComponents}>{text}</ReactMarkdown>}
+                    onImageUpload={handleImageUpload}
+                    previewStyle={{ minHeight: 200 }}
+                />
+                <div>
+                    <h2>Add Image by URL</h2>
+                    <input type="text" placeholder="Enter image URL" onChange={(e) => handleAddImageUrl(e.target.value)} />
+                </div>
+            </div>

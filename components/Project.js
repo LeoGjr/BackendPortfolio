@@ -155,7 +155,7 @@ export default function Project(
                     onChange={ev => setClient(ev.target.value)}
                 />
             </div>
-            
+
             {/* Project Live Preview */}
             <div className='w-100 flex flex-col flex-left mb-2' data-aos="fade-up">
                 <label htmlFor="title">Project Live Preview</label>
@@ -171,6 +171,7 @@ export default function Project(
                 <select onChange={(e) => setProjectcategory(Array.from(e.target.selectedOptions, option => option.value))} name="catergory" id="catergory" multiple value={projectcategory} >
                     <option value="">Select Category</option>
                     <option value="Website Development">Website Development</option>
+                    <option value="Game Development">Game Development</option>
                     <option value="App Development">App Development</option>
                     <option value="Design System">Design System</option>
                     <option value="Website Migration">Website Migration</option>
@@ -251,6 +252,14 @@ export default function Project(
             <div className='w-100 flex flex-col flex-left mb-2' data-aos="fade-up">
                 <label htmlFor="tags">Tags (ctrl + leftclick for multiple select)</label>
                 <select onChange={(e) => setTags(Array.from(e.target.selectedOptions, option => option.value))} name="tags" id="tags" multiple value={tags}>
+                    <option value="Gdevelop">Gdevelop</option>
+                    <option value="Construct">Construct</option>
+                    <option value="Godot">Godot</option>
+                    <option value="Gamemaker">Gamemaker</option>
+                    <option value="Unity">Unity</option>
+                    <option value="Unreal">Unreal</option>
+                    <option value="Wordpress">Wordpress</option>
+                    <option value="E-Commerce">E-Commerce</option>
                     <option value="React">React</option>
                     <option value="Css">css</option>
                     <option value="Javascript">javaScript</option>
